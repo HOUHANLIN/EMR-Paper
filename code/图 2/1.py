@@ -2,7 +2,16 @@ from graphviz import Digraph
 
 def build_flowchart(out_name="flowchart", fmt="png"):
     g = Digraph("EMR_System", format=fmt)
-    g.attr(rankdir="TB", splines="ortho", fontname="Microsoft YaHei")
+    # 横向布局 + 控制间距与画布尺寸，避免图像过高过长
+    g.attr(
+        rankdir="LR",           # 改为左右布局，减少竖向长度
+        splines="ortho",
+        fontname="Microsoft YaHei",
+        ranksep="0.7",          # 不同层级之间的间距
+        nodesep="0.4",          # 同一层节点之间的间距
+        size="11,6!",           # 约 11x6 英寸画布，长宽比较均衡
+        margin="0.2"            # 收紧外边距
+    )
     g.attr("node", shape="box", style="rounded", fontname="Microsoft YaHei",
            fontsize="12", color="#333333")
     g.attr("edge", color="#cc6666", penwidth="1.2")

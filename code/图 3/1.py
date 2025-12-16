@@ -110,7 +110,12 @@ def build_fig_y(out_base="figY_asr_llm", fmt="png"):
 def build_fig_z(out_base="figZ_system_flow", fmt="png"):
     g = Digraph("FigZ", format=fmt)
     apply_bw_theme(g)
-    g.attr(rankdir="TB")
+    # 改为横向布局，并稍微控制间距，便于论文排版
+    g.attr(
+        rankdir="LR",   # 横向布局
+        ranksep="0.7",  # 层间距
+        nodesep="0.4"   # 同层节点间距
+    )
 
     # 主流程节点
     g.node("z1", "语音输入", fillcolor="#F2F2F2")  # 起点浅灰
